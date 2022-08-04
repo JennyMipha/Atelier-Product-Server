@@ -4,6 +4,9 @@
 
 -- DROP TABLE IF EXISTS products, styles, features, photos, skus, related;
 
+-- DROP TABLE IF EXISTS styles, photos, skus;
+
+
 CREATE TABLE IF NOT EXISTS products (
   id int PRIMARY KEY,
   name varchar(100),
@@ -51,10 +54,16 @@ CREATE TABLE IF NOT EXISTS related (
   -- UNIQUE (related_product_id, product_id)
 );
 
--- COPY products FROM '/Users/jennifer/Desktop/HR/Pokemon-SDC/data/product.csv' DELIMITER ',' CSV HEADER;
+-- -- COPY products FROM '/Users/jennifer/Desktop/HR/Pokemon-SDC/data/product.csv' DELIMITER ',' CSV HEADER;
 -- COPY styles FROM '/Users/jennifer/Desktop/HR/Pokemon-SDC/data/styles.csv' DELIMITER ',' NULL 'null' CSV HEADER;
--- COPY features FROM '/Users/jennifer/Desktop/HR/Pokemon-SDC/data/features.csv' DELIMITER ',' CSV HEADER;
-COPY photos FROM '/Users/jennifer/Desktop/HR/Pokemon-SDC/data/photos.csv' DELIMITER ',' CSV HEADER;
+-- -- COPY features FROM '/Users/jennifer/Desktop/HR/Pokemon-SDC/data/features.csv' DELIMITER ',' CSV HEADER;
+-- COPY photos FROM '/Users/jennifer/Desktop/HR/Pokemon-SDC/data/photos.csv' DELIMITER ',' CSV HEADER;
 -- COPY skus FROM '/Users/jennifer/Desktop/HR/Pokemon-SDC/data/skus.csv' DELIMITER ',' CSV HEADER;
-COPY related FROM '/Users/jennifer/Desktop/HR/Pokemon-SDC/data/related.csv' DELIMITER ',' CSV HEADER;
-
+-- -- COPY related FROM '/Users/jennifer/Desktop/HR/Pokemon-SDC/data/related.csv' DELIMITER ',' CSV HEADER;
+CREATE INDEX products_product_id ON products (product_id);
+CREATE INDEX features_product_id ON features (product_id);
+CREATE INDEX styles_product_id ON styles (product_id);
+CREATE INDEX styles_style_id ON styles (styled_id);
+CREATE INDEX photos_style_id ON photos (styled_id);
+CREATE INDEX skus_style_id ON skus (styled_id);
+CREATE INDEX related_product_id ON related (product_id);

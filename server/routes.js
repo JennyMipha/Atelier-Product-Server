@@ -1,5 +1,4 @@
 const controller = require('./controller/products');
-const model = require('./model/products');
 
 module.exports = {
   getProducts: (req, res) => {
@@ -12,9 +11,10 @@ module.exports = {
   },
   getProductStyles: (req, res) => {
     console.log('IN ROUTE, getProductStyles, productId = ', req.params.product_id);
+    controller.getProductStyles(req, res);
   },
   getRelatedProducts: (req, res) => {
     console.log('IN ROUTE, getRelatedProducts, productId = ', req.params.product_id);
+    controller.getRelatedProducts(req, res);
   },
-
-}
+};

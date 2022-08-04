@@ -6,11 +6,11 @@ const pool = new Pool({
 });
 
 // let connect = pool.connect()
-  // .then(() => {
-  //   console.log('SUCCESS!');
-  // })
-  // .catch((err) => {
-  //   console.log('CONNECT FAILED, err = ', err);
-  // });
+// .then(() => {
+//   console.log('SUCCESS!');
+// })
+// .catch((err) => {
+//   console.log('CONNECT FAILED, err = ', err);
+// });
 
 exports.pool = pool;
