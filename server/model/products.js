@@ -78,7 +78,7 @@ module.exports = {
     console.log('IN MODEL, getRelatedProducts, id = ', id);
     return new Promise((resolve, reject) => {
       db.pool.query(`SELECT
-        array_agg(related_product_id)
+        json_agg(related_product_id)
       AS result FROM related WHERE product_id=${id}`)
         .then((result) => {
           console.log('IN MODEL, getProductInfo, DB CONNECT SUCCESS result.rows = ', result.rows[0].result);
