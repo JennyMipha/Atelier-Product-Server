@@ -7,7 +7,6 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-// check
 app.use(express.urlencoded({
   extended: true,
 }));
@@ -18,6 +17,7 @@ app.get('/products', routes.getProducts);
 app.get('/products/:product_id', routes.getProductInfo);
 app.get('/products/:product_id/styles', routes.getProductStyles);
 app.get('/products/:product_id/related', routes.getRelatedProducts);
+app.get('/loaderio-36f655813308bce85584c9a9cd6e4353', (req, res) => res.send('loaderio-36f655813308bce85584c9a9cd6e4353'));
 
 app.listen(PORT);
 console.log(`Server listening at http://localhost:${PORT}`);

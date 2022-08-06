@@ -2,7 +2,7 @@ const model = require('../model/products');
 
 module.exports = {
   getProducts: (req, res) => {
-    console.log('IN CONTROLLER, getProducts');
+    // console.log('IN CONTROLLER, getProducts');
     const count = req.query.count || 5;
     const page = req.query.page || 1;
     model.getProducts(page, count)
@@ -15,7 +15,7 @@ module.exports = {
       });
   },
   getProductInfo: (req, res) => {
-    console.log('IN CONTROLLER, getProductInfo, productId = ', req.params.product_id);
+    // console.log('IN CONTROLLER, getProductInfo, productId = ', req.params.product_id);
     const id = req.params.product_id;
     model.getProductInfo(id)
       .then((data) => {
@@ -27,7 +27,7 @@ module.exports = {
       });
   },
   getProductStyles: (req, res) => {
-    console.log('IN CONTROLLER, getProductStyles, productId = ', req.params.product_id);
+    // console.log('IN CONTROLLER, getProductStyles, productId = ', req.params.product_id);
     const id = req.params.product_id;
     model.getProductStyles(id)
       .then((data) => {
@@ -39,7 +39,7 @@ module.exports = {
       });
   },
   getRelatedProducts: (req, res) => {
-    console.log('IN CONTROLLER, getRelatedProducts, productId = ', req.params.product_id);
+    // console.log('IN CONTROLLER, getRelatedProducts, productId = ', req.params.product_id);
     const id = req.params.product_id;
     model.getRelatedProducts(id)
       .then((data) => {

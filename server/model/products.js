@@ -1,22 +1,23 @@
+/* eslint-disable arrow-body-style */
 const db = require('../../database/index');
 
 module.exports = {
   getProducts: (page, count) => {
-    console.log('IN MODEL, getProducts, page = ', page, 'count = ', count);
+    // console.log('IN MODEL, getProducts, page = ', page, 'count = ', count);
     return new Promise((resolve, reject) => {
       db.pool.query(`SELECT * FROM products ORDER BY id LIMIT ${count} OFFSET ${(page - 1) * count}`)
         .then((result) => {
-          console.log('IN MODEL, getProduct, DB CONNECT SUCCESS! result.rows = ', result.rows);
+          // console.log('IN MODEL, getProduct, DB CONNECT SUCCESS! result.rows = ', result.rows);
           resolve(result.rows);
         })
         .catch((err) => {
-          console.log('IN MODEL, getProduct, DB CONNECT FAILED. err = ', err);
+          // console.log('IN MODEL, getProduct, DB CONNECT FAILED. err = ', err);
           reject(err);
         });
     });
   },
   getProductInfo: (id) => {
-    console.log('IN MODEL, getProductInfo, id = ', id);
+    // console.log('IN MODEL, getProductInfo, id = ', id);
     return new Promise((resolve, reject) => {
       db.pool.query(`SELECT
         *,
@@ -27,17 +28,18 @@ module.exports = {
         AS features
         FROM products WHERE id=${id}`)
         .then((result) => {
-          console.log('IN MODEL, getProductInfo, DB CONNECT SUCCESS result.rows = ', result.rows);
+          // console.log('IN MODEL, getProductInfo, DB CONNECT SUCCESS result.rows = ', result.rows);
           resolve(result.rows[0]);
         })
         .catch((err) => {
-          console.log('IN MODEL, getProductInfo, DB CONNECT FAILED. err = ', err);
+          // console.log('IN MODEL, getProductInfo, DB CONNECT FAILED. err = ', err);
           reject(err);
         });
     });
   },
+  // eslint-disable-next-line arrow-body-style
   getProductStyles: (id) => {
-    console.log('IN MODEL, getProductStyles, id = ', id);
+    // console.log('IN MODEL, getProductStyles, id = ', id);
     return new Promise((resolve, reject) => {
       db.pool.query(`SELECT array_agg(json_build_object(
         'style_id', styles.styled_id,
@@ -61,7 +63,7 @@ module.exports = {
       FROM styles
       WHERE styles.product_id = ${id}`)
         .then((result) => {
-          console.log('IN MODEL, getProductInfo, DB CONNECT SUCCESS result.rows = ', result.rows[0].results);
+          // console.log('IN MODEL, getProductInfo, SUCCESS result = ', result.rows[0].results);
           const obj = {
             product_id: id,
             results: result.rows[0].results,
@@ -69,23 +71,23 @@ module.exports = {
           resolve(obj);
         })
         .catch((err) => {
-          console.log('IN MODEL, getProductInfo, DB CONNECT FAILED. err = ', err);
+          // console.log('IN MODEL, getProductInfo, DB CONNECT FAILED. err = ', err);
           reject(err);
         });
     });
   },
   getRelatedProducts: (id) => {
-    console.log('IN MODEL, getRelatedProducts, id = ', id);
+    // console.log('IN MODEL, getRelatedProducts, id = ', id);
     return new Promise((resolve, reject) => {
       db.pool.query(`SELECT
         json_agg(related_product_id)
       AS result FROM related WHERE product_id=${id}`)
         .then((result) => {
-          console.log('IN MODEL, getProductInfo, DB CONNECT SUCCESS result.rows = ', result.rows[0].result);
+          // console.log('IN MODEL, getProductInfo, SUCCESS result.rows = ', result.rows[0].result);
           resolve(result.rows[0].result);
         })
         .catch((err) => {
-          console.log('IN MODEL, getProductInfo, DB CONNECT FAILED. err = ', err);
+          // console.log('IN MODEL, getProductInfo, DB CONNECT FAILED. err = ', err);
           reject(err);
         });
     });
