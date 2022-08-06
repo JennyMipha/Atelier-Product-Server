@@ -7,7 +7,7 @@ const pool = new Pool({
   database: process.env.PGDATABASE,
   password: process.env.PGPASSWORD,
   port: process.env.PGPORT,
-  connectionTimeoutMillis: 1000,
+  // connectionTimeoutMillis: 1000,
 });
 
 // let connect = pool.connect()
